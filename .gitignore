@@ -1,0 +1,6 @@
+# LaTex Files
+*.aux
+*.log
+*.pdf
+
+!src/unal_logo.pdf

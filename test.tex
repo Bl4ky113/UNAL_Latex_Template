@@ -1,0 +1,42 @@
+\documentclass{article}
+
+\def\TemplatePath{./}
+\input{template.tex}
+
+\usepackage{polyglossia} % Language
+    \setdefaultlanguage{spanish}%
+
+\def\MyClass{TEST CLASS NAME}
+\def\MyTitle{TEST TITLE NAME}
+\def\MyAuthor{TEST AUTHOR NAME;JOHN FIRST DOUGLASS DOE;}
+\def\MyEmail{test email name}
+\def\MyDate{\today}
+
+\begin{document}
+    \maketitle{}
+    Hello!
+    \begin{enumerate}[label=\listAlphP]
+        \item test \nsN{}
+        \item test \(\nsZ{}\)
+        \item test \(\nsR{}\)
+        \item \fset{a,b,c}
+        \item \ffunc{f}{b}
+    \end{enumerate}
+    \begin{definition}
+        Simple definition of something Adipisicing vel minus voluptatem voluptatum consequuntur Porro tempore natus dolorum magni fugiat. Suscipit excepturi placeat molestiae excepturi natus, obcaecati Susc
+    \end{definition}
+    \begin{theorem}
+        Dolor earum fugit quam perferendis eaque! Reiciendis autem velit quas atque doloremque. Voluptatibus natus veniam reprehenderit cum et? Iure recusandae ea necessitatibus tempora neque Et tempora aut ab officia tempore
+    \end{theorem}
+    \begin{lemma}
+        Elit animi iste elit quibusdam doloremque fuga accusantium! Reprehenderit laborum amet labore quasi blanditiis. Qui est esse unde consequuntur expedita! Eum nemo nihil molestias dolor tenetur dolore. Labore tempora incidunt
+    \end{lemma}
+    \begin{corollary}
+        Ipsum quisquam minima adipisicing quod eos vel itaque! Nostrum nulla assumenda voluptatum dignissimos ex Laudantium dignissimos architecto nemo vel laboriosam quam Perferendis provident et temporibus aut tempore, minus nobis rem.
+    \end{corollary}
+    \begin{proposition}
+        Ipsum quisquam minima adipisicing quod eos vel itaque! Nostrum nulla assumenda voluptatum dignissimos ex Laudantium dignissimos architecto nemo vel laboriosam quam Perferendis provident et temporibus aut tempore, minus nobis rem.
+    \end{proposition}
+    \newpage{}
+    hello again!
+\end{document}

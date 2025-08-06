@@ -1,0 +1,283 @@
+
+%%% Template Packages %%%
+
+\usepackage{xifthen} % Template stuff 
+\usepackage{graphicx} % Images
+\usepackage{tcolorbox} % Color Box
+\usepackage[%
+vmargin=2cm,%
+hmargin=2.25cm,%
+headheight=22pt%
+]{geometry} % Page Geometry
+\usepackage{fancyhdr} % Header / Footer Styles
+\usepackage{extramarks} % Header / Footer Marks
+
+\usepackage{ragged2e} % Text Align
+\usepackage{amsmath} % Math Align
+
+\usepackage{booktabs} % Tables+ Package
+\usepackage[inline]{enumitem} % Enumarete+ Package
+\usepackage{xparse} % Command Args Split Package
+
+\usepackage{mathtools} % Math General
+\usepackage{amsthm} % Math Envs
+\usepackage{unicode-math} % Math Symbols
+
+\usepackage{polyglossia} % Language
+    \setdefaultlanguage{spanish}%
+
+%%% Variables and Such %%%
+\ifthenelse{\isundefined{\TemplatePath}}{%
+    \def\TemplatePath{template/}
+}{}
+
+%%% Template Styles %%%
+
+% Header / Footer Styles
+\pagestyle{fancy}
+\RenewDocumentCommand{\headrule}{}{%
+    \rule[0.1cm]{\textwidth}{0.1mm}%
+}
+
+\ifthenelse{\isundefined{\MyTitle}}{}{%
+\fancyhf[HC]{{\slshape \MyTitle{}}}
+}%
+%\fancyhead[HL]{\firstleftxmark}
+%\fancyhead[HR]{\lastleftxmark}
+
+\RenewDocumentCommand{\footrule}{}{%
+    \rule[0.1cm]{\textwidth}{0.1mm}%
+}
+
+\renewcommand{\thefootnote}{\Roman{footnote}} % Changing footnotes arabic to roman numbers
+
+% Redefine \maketitle
+\RenewDocumentCommand{\maketitle}{s}{%
+    \begin{@twocolumntrue}%
+        \begin{minipage}{0.3\textwidth}%
+            \begin{Center}
+                \includegraphics[width=0.6\textwidth]{\TemplatePath src/unal_logo.pdf}%
+            \end{Center}
+        \end{minipage}%
+        \begin{minipage}{0.7\textwidth}{%
+            \begin{Center}
+                \ifthenelse{\isundefined{\MyClass}}{%
+                    {\large Set \textbackslash{}def\textbackslash{}MyClass\{your\_class\} in the preamble} \\[0ex]%
+                }{%
+
+                    {\large \itshape \MyClass{}} \\[1ex]
+                }%
+                \ifthenelse{\isundefined{\MyTitle}}{%
+                    {\huge Set \textbackslash{}def\textbackslash{}MyTitle\{doc\_title\} in the preamble} \\[4ex]%
+                }{%
+                    {\huge \slshape \MyTitle{}} \\[4ex]%
+                }%
+                \ifthenelse{\isundefined{\MyAuthor}}{%
+                    {\Large Set \textbackslash{}def\textbackslash{}MyAuthor\{your\_name\} in the preamble} \\%
+                }{%
+                    {\Large \MyAuthor{}} \\%
+                }%
+                \ifthenelse{\isundefined{\MyEmail}}{%
+                    {\small Set \textbackslash{}def\textbackslash{}MyEmail\{your\_email\} in the preamble} \\[4ex]%
+                }{%
+                    {\small \MyEmail{}} \\[4ex]%
+                }%
+                \ifthenelse{\isundefined{\MyDate}}{%
+                    Set \textbackslash{}def\textbackslash{}MyDate\{doc\_date\} in the preamble%
+                }{%
+                    \MyDate{}%
+                }%
+            \end{Center}
+        }%
+        \end{minipage}%
+    \end{@twocolumntrue}%
+    \vspace{0.5cm}%
+    \begin{Center}%
+        \rule[0cm]{\textwidth}{0.1mm}%
+    \end{Center}%
+    \vspace{0.5cm}%
+}
+
+% Enumerate Lists types
+\newcommand\SetItemnumber[1]{\setcounter{enumi}{\numexpr#1-1\relax}}
+\newcommand{\listSubscript}[2]{\(#1_{#2}\)}
+\newcommand{\listAlph}{\alph*.}
+\newcommand{\listALPH}{\Alph*.}
+
+% Fast Supper and Sub -scripts
+\NewDocumentCommand{\tsup}{m} {\textsuperscript{#1}}
+\NewDocumentCommand{\tsub}{m} {\textsubscript{#1}}
+
+% Set of Numbers
+\def\realR{\symbb{R}} % Real
+\def\realN{\symbb{N}} % Natural
+\def\realZ{\symbb{Z}} % Integers
+\def\realQ{\symbb{Q}} % Rational
+\def\realC{\symbb{C}} % Complex
+\def\realC{\symbb{I}} % Irrational
+
+%%% Template Math stuff %%%
+
+% Theorems
+\newtheorem{TMPMathTheorem}{Teorema}
+\NewDocumentEnvironment{theorem}{+b} {%
+    \begin{TMPMathTheorem}%
+        #1 %
+    \end{TMPMathTheorem}%
+} {}
+
+% Collorary
+\newtheorem{TMPMathCorollary}[TMPMathTheorem]{Corolario}
+\NewDocumentEnvironment{corollary}{+b} {%
+    \begin{TMPMathCorollary}%
+        #1 %
+    \end{TMPMathCorollary}%
+} {}
+
+% Definitions
+\newtheorem{TMPMathDefinition}[TMPMathTheorem]{Definición}
+\NewDocumentEnvironment{definition}{+b} {%
+    \begin{tcolorbox}[left=0mm,right=0mm]%
+        \begin{TMPMathDefinition}%
+            #1 %
+            \hspace{\fill}\(\bigtriangleup\)%
+        \end{TMPMathDefinition}%
+    \end{tcolorbox}%
+} {}
+
+% Cases and stuff
+\newtheorem{TMPMathCases}[]{Caso}
+\NewDocumentCommand{\ResetCases}{} {\setcounter{TMPMathCases}{0}}
+\NewDocumentEnvironment{mathcase}{O{}m} {%
+    \IfValueTF{#1}{%
+        \begin{TMPMathCases}[#1] % 
+            #2%
+        \end{TMPMathCases}%
+    }{%
+        \begin{TMPMathCases} % 
+            #2%
+        \end{TMPMathCases}%
+    }
+} {}
+
+% Custom det of a Matrix
+\NewDocumentCommand{\pdet}{m} {%
+    \text{det}%
+    \left(%
+    #1 %
+    \right)%
+}
+
+% Custom Adj of a Matrix
+\NewDocumentCommand{\padj}{m} {%
+    \text{Adj}%
+    \left(%
+    #1 %
+    \right)%
+}
+
+% Custom Parentheses Gen of V.S
+\NewDocumentCommand{\pgen}{m} {%
+    \text{Gen}%
+    \left(%
+    #1 %
+    \right)%
+}
+
+% Custom Bracket Gen of V.S
+\NewDocumentCommand{\bgen}{m} {%
+    \text{Gen}%
+    \left\{%
+    #1 %
+    \right\}%
+}
+
+% Custom Parentheses Dimension of V.S
+\NewDocumentCommand{\pdim}{m} {%
+    \text{dim}%
+    \left(%
+    #1 %
+    \right)%
+}
+
+% Custom Squarebrackets 
+\NewDocumentCommand{\veccoord}{mm} {%
+    \left[%
+    #1 %
+    \right]{}_{ #2 }%
+}
+
+% Fast Function
+\NewDocumentCommand{\ffunc}{mm} {%
+    #1\left(#2\right)
+}
+
+% Fast Set
+\NewDocumentCommand{\fset}{m} {%
+    \left\{%
+        #1 %
+    \right\}%
+}
+
+% Fast Vector Proyection
+\NewDocumentCommand{\fproy}{mm} {%
+    \text{Proy}_{#1} #2
+}
+
+% Fast Vector Norm
+\NewDocumentCommand{\fnorm}{m} {%
+    \left|\left|#1\right|\right|
+}
+
+% Fast Kernel of a Linear Transformation
+\NewDocumentCommand{\fker}{m} {%
+    \text{ker}\left(#1\right)
+}
+
+% Fast Image of a Linear Transformation
+\NewDocumentCommand{\fimg}{m} {%
+    \text{Im}\left(#1\right)
+}
+
+% Fast Vector & Small Vector
+\NewDocumentCommand{\fvec}{ > {\SplitList{,}}m } {%
+    \begin{pmatrix} %
+        \ProcessList{#1}{\handlefvec}
+    \end{pmatrix} %
+}
+\NewDocumentCommand{\fsmvec}{ > {\SplitList{,}}m } {%
+    \left(
+    \begin{smallmatrix} %
+        \ProcessList{#1}{\handlefvec}
+    \end{smallmatrix} %
+    \right)
+}
+\NewDocumentCommand{\handlefvec}{m}{%
+    #1 \\%
+}
+
+% Fast Matrix & Small Matrix
+\NewDocumentCommand{\fmatrix}{>{\SplitList{;}}m} {%
+    \begin{pmatrix} %
+        \ProcessList{#1}{\handlefmatrixline}
+    \end{pmatrix} %
+}
+\NewDocumentCommand{\fsmmatrix}{>{\SplitList{;}}m} {%
+    \left(
+    \begin{smallmatrix} %
+        \ProcessList{#1}{\handlefmatrixline}
+    \end{smallmatrix} %
+    \right)
+}
+\NewDocumentCommand{\handlefmatrixline}{>{\SplitList{,}}m}{%
+    \ProcessList{#1}{\handlefmatrixitem} \\
+}
+\NewDocumentCommand{\handlefmatrixitem}{m}{%
+    \ifthenelse{\isundefined{\FirstItem}}{%
+        #1 
+    }{%
+        & #1
+    }%
+    \def\FirstItem{0}
+}
+
