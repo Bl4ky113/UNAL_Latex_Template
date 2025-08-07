@@ -16,7 +16,6 @@
 
 \RequirePackage{booktabs} % Tables+ Package
 \RequirePackage[inline]{enumitem} % Enumarate+ Package
-\RequirePackage{xparse} % Command Args Split Package
 \RequirePackage{xstring} % Command Args Strings Handling Package
 
 \RequirePackage{mathtools} % Math General
@@ -239,8 +238,8 @@
 %%% General Fast Binds %%% 
 
 % Fast Sup and Sub -scripts
-\NewDocumentCommand{\fsup}{m} {\textsuperscript{#1}}
-\NewDocumentCommand{\fsub}{m} {\textsubscript{#1}}
+\NewDocumentCommand{\fsup}{m}{\textsuperscript{#1}}
+\NewDocumentCommand{\fsub}{m}{\textsubscript{#1}}
 
 % Fast Set of Numbers 
 \def\nsN{\ensuremath{\mathbb{N}}} % Natural

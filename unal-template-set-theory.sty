@@ -1,0 +1,65 @@
+
+\ProvidesExplPackage{UNAL Modular Template --- Set Theory Module}{2025/08/07}{1.0.0}{Set Theory Fast Binds, Commands and Such for UNAL Modular Template}
+\NeedsTeXFormat{LaTeX2e}
+
+\RequirePackage{mathtools} % Math General
+\RequirePackage{amsthm} % Math Envs
+\RequirePackage{unicode-math} % Math Symbols
+\RequirePackage{amsmath} % Math Align
+
+% Fast Power Set
+\NewDocumentCommand{\fpows}{m}{\ensuremath{%
+    \symscr{P}\left( #1 \right)%
+}}
+
+% Fast Relation Image
+\NewDocumentCommand{\frelimg}{mm}{\ensuremath{%
+    #1 \left[ #2 \right]%
+}}
+
+% Fast Relation Def
+\NewDocumentCommand{\freldef}{mmm}{\ensuremath{%
+    #1 \subseteq #2 \times #3%
+}}
+
+% Fast Funciton Def
+\NewDocumentCommand{\ffuncdef}{mmm}{\ensuremath{%
+    #1: #2 \rightarrow #3%
+}}
+
+% Fast Function Image Def
+\NewDocumentCommand{\ffuncimgdef}{mm}{\ensuremath{%
+    #1 \mapsto #2%
+}}
+
+% Fast Set Cardinal
+\NewDocumentCommand{\fcard}{m}{\ensuremath{%
+    \left| #1 \right|%
+}}
+
+% Fast Ordered Pair of elements
+\NewDocumentCommand{\fpair}{mm}{\ensuremath{%
+    \left( #1, #2 \right)%
+}}
+
+% Fast Order
+\NewDocumentCommand{\forder}{mm}{\ensuremath{%
+    \fpair{#1}{#2}%
+}}
+
+%% Fast n-tuple
+% To use it split the values of the n-tuple with commas ','
+% \ftuple{A,B,C,D}
+\NewDocumentCommand{\ftuple}{>{\SplitList{,}}m}{\ensuremath{%
+    \left(%
+        \ProcessList{#1}{\handletupleitem}%
+    \right)%
+}}
+\NewDocumentCommand{\handletupleitem}{m}{\ensuremath{%
+    \ifthenelse{\isundefined{\FirstItem}}{%
+        #1%
+    }{%
+        ,#1%
+    }%
+    \def\FirstItem{0}
+}}
