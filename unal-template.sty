@@ -4,6 +4,7 @@
     UNAL Modular Template; %
     Modular template for Math/CS articles for the Universidad Nacional de Colombia %
 ]
+\NeedsTeXFormat{LaTeX2e}
 
 %%% Main Template Packages %%%
 
@@ -254,7 +255,17 @@
 
 % Fast Function
 \NewDocumentCommand{\ffunc}{mm}{\ensuremath{%
-    #1\left(#2\right)%
+    #1\left( #2 \right) %
+}}
+
+% Fast inverse 
+\NewDocumentCommand{\finv}{m}{\ensuremath{%
+    #1^{-1}
+}}
+
+% Fast Inverse (image) function
+\NewDocumentCommand{\ffuncinv}{mm}{\ensuremath{%
+    #1^{-1}\left( #2 \right) %
 }}
 
 % Fast Function Domain

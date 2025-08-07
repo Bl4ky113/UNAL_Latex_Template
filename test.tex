@@ -5,6 +5,7 @@
 \usepackage{unal-template}
     \usepackage{unal-template-algebra}
     \usepackage{unal-template-set-theory}
+    \usepackage{unal-template-calculus}
 
 \def\MyClass{TEST CLASS NAME lorem }
 \def\MyTitle{TEST TITLE NAME}
@@ -21,7 +22,7 @@
         \item test \(\nsZ{}\)
         \item test \(\nsR{}\)
         \item \fset{a,b,c}
-        \item \ffunc{f}{b} \ffuncdef{f}{A}{B} \ffuncimgdef{a}{b}
+        \item \ffunc{f}{b} \ffuncdef{f}{A}{B} \ffuncimgdef{a}{b} \finv{f} \ffuncinv{f}{B}
         \item \fnorm{ASD}
         \item \frelimg{R}{A}
         \item \ftuple{1,2,3,4,5,6} \fpair{1}{2} \ftuple{1,2}
@@ -51,7 +52,20 @@
         \fgmat{v}{1,2,3,4;5,6,7,8;9,0,0,0}
         \fsmgmat{|}{|}{1,2,3,4;5,6,7,8;9,0,0,0}
     \]
+    \[
+        \int x dx = \frac{x^2}{2} + \fintc
+        \hspace{1cm}
+        \fisum{0}{\infty}{\frac{1}{i}}
+    \]
     \newpage{}
+    \begin{enumerate}
+        \item \fsin{\pi} \fcos{\pi} \ftan{\pi} \fcsc{\pi} \fsec{\pi} \fcot{\pi}
+        \item \farcsin{\pi} \farccos{\pi} \farctan{\pi} \farccsc{\pi} \farcsec{\pi} \farccot{\pi}
+        \item \fbincoe{1}{n} \(\fabs{x - 1}\)
+        \item \(\flim{2}{\frac{1}{x-2}} \fglim{h}{0}{\frac{\ffunc{f}{A + h} - \ffunc{f}{A}}{h}}\)
+        \item \[\flimlr{2}{+}{\frac{1}{x-2}} \fglimlr{h}{0}{-}{\frac{\ffunc{f}{A + h} - \ffunc{f}{A}}{h}}\]
+        \item \(\lim{}\)
+    \end{enumerate}
     hello again!
     \begin{definition}
         Simple definition of something Adipisicing vel minus voluptatem voluptatum consequuntur Porro tempore natus dolorum magni fugiat. Suscipit excepturi placeat molestiae excepturi natus, obcaecati Susc

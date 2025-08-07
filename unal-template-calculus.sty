@@ -4,10 +4,83 @@
     UNAL Modular Template --- Calculus Module; %
     Calculus Fast Binds, Commands and Such for UNAL Modular Template %
 ]
+\NeedsTeXFormat{LaTeX2e}
 
 \RequirePackage{mathtools} % Math General
 \RequirePackage{unicode-math} % Math Symbols
 \RequirePackage{amsmath} % Math Align
 \RequirePackage{amsthm} % Math Envs
 
+% Fast integrant constant
+\def\fintc{\ensuremath{\Huge{\symscr{C}}}}
 
+% Fast Absolute Value
+\NewDocumentCommand{\fabs}{m}{\ensuremath{%
+    \left\vert #1 \right\vert%
+}}
+
+% Fast Binomial Coeficient
+\NewDocumentCommand{\fbincoe}{mm}{\ensuremath{%
+    \begin{pmatrix}%
+        #1 \\ #2%
+    \end{pmatrix}%
+}}
+
+%% Fast Limits
+% Fast Lim
+\NewDocumentCommand{\flim}{mm}{\ensuremath{%
+    \text{lím}_{x \rightarrow #1} #2%
+}}
+\NewDocumentCommand{\fglim}{mmm}{\ensuremath{%
+    \text{lím}_{#1 \rightarrow #2} #3%
+}}
+
+% Fast limits L/R
+\NewDocumentCommand{\flimlr}{mmm}{\ensuremath{%
+    \text{lím}_{x \rightarrow #1^{#2}} #3%
+}}
+\NewDocumentCommand{\fglimlr}{mmmm}{\ensuremath{%
+    \text{lím}_{#1 \rightarrow #2^{#3}} #4%
+}}
+
+%% Fast Sums
+% i-Sum
+\NewDocumentCommand{\fisum}{mmm}{\ensuremath{%
+    \sum_{i = #1}^{#2} #3%
+}}
+% j-Sum
+\NewDocumentCommand{\fjsum}{mmm}{\ensuremath{%
+    \sum_{j = #1}^{#2} #3%
+}}
+% k-Sum
+\NewDocumentCommand{\fksum}{mmm}{\ensuremath{%
+    \sum_{k = #1}^{#2} #3%
+}}
+% n-Sum
+\NewDocumentCommand{\fnsum}{mmm}{\ensuremath{%
+    \sum_{n = #1}^{#2} #3%
+}}
+% m-Sum
+\NewDocumentCommand{\fmsum}{mmm}{\ensuremath{%
+    \sum_{m = #1}^{#2} #3%
+}}
+
+%% Definition of some Trigfunctions
+\def\arccsc{\ensuremath{\text{arccsc}}}
+\def\arcsec{\ensuremath{\text{arcsec}}}
+\def\arccot{\ensuremath{\text{arccot}}}
+
+%% Fast Image of Trigfunctions
+\NewDocumentCommand{\fsin}{m}{\ensuremath{\sin\left( #1 \right)}}
+\NewDocumentCommand{\fcos}{m}{\ensuremath{\cos\left( #1 \right)}}
+\NewDocumentCommand{\ftan}{m}{\ensuremath{\tan\left( #1 \right)}}
+\NewDocumentCommand{\fcsc}{m}{\ensuremath{\csc\left( #1 \right)}}
+\NewDocumentCommand{\fsec}{m}{\ensuremath{\sec\left( #1 \right)}}
+\NewDocumentCommand{\fcot}{m}{\ensuremath{\cot\left( #1 \right)}}
+
+\NewDocumentCommand{\farcsin}{m}{\ensuremath{\arcsin\left( #1 \right)}}
+\NewDocumentCommand{\farccos}{m}{\ensuremath{\arccos\left( #1 \right)}}
+\NewDocumentCommand{\farctan}{m}{\ensuremath{\arctan\left( #1 \right)}}
+\NewDocumentCommand{\farccsc}{m}{\ensuremath{\arccsc\left( #1 \right)}}
+\NewDocumentCommand{\farcsec}{m}{\ensuremath{\arcsec\left( #1 \right)}}
+\NewDocumentCommand{\farccot}{m}{\ensuremath{\arccot\left( #1 \right)}}
