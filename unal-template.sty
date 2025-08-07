@@ -1,37 +1,39 @@
 
+\ProvidesPackage{UNAL Modular Template}[2025/08/06 Modular template ready for ]
+\NeedsTeXFormat{LaTeX2e}
+
 %%% Main Template Packages %%%
 
-\usepackage{xifthen} % Template stuff 
-\usepackage{graphicx} % Images
-\usepackage{tcolorbox} % Color Box
-\usepackage[%
-    vmargin=2cm,%
-    hmargin=2.25cm,%
-    headheight=22pt%
-]{geometry} % Page Geometry
-\usepackage{fancyhdr} % Header / Footer Styles
-\usepackage{extramarks} % Header / Footer Marks
+\RequirePackage{xifthen} % Template stuff 
+\RequirePackage{graphicx} % Images
+\RequirePackage{tcolorbox} % Color Box
+\RequirePackage{geometry} % Page Geometry
+\RequirePackage{fancyhdr} % Header / Footer Styles
+\RequirePackage{extramarks} % Header / Footer Marks
 
-\usepackage{ragged2e} % Text Align
-\usepackage{amsmath} % Math Align
+\RequirePackage{ragged2e} % Text Align
+\RequirePackage{amsmath} % Math Align
 
-\usepackage{booktabs} % Tables+ Package
-\usepackage[inline]{enumitem} % Enumarate+ Package
-\usepackage{xparse} % Command Args Split Package
+\RequirePackage{booktabs} % Tables+ Package
+\RequirePackage[inline]{enumitem} % Enumarate+ Package
+\RequirePackage{xparse} % Command Args Split Package
+\RequirePackage{xstring} % Command Args Strings Handling Package
 
-\usepackage{mathtools} % Math General
-\usepackage{amsthm} % Math Envs
-\usepackage{unicode-math} % Math Symbols
+\RequirePackage{mathtools} % Math General
+\RequirePackage{amsthm} % Math Envs
+\RequirePackage{unicode-math} % Math Symbols
 
-\usepackage{polyglossia} % Language
-    \setdefaultlanguage{spanish}%
+\RequirePackage{polyglossia} % Language
+    \setdefaultlanguage{spanish}
 
 %%% Variables and Such %%%
+
 \ifthenelse{\isundefined{\TemplatePath}}{%
     \def\TemplatePath{template/}
 }{}
 
-% Header / Footer Styles
+%%% Header / Footer Styles %%%
+
 \pagestyle{fancy}
 \RenewDocumentCommand{\headrule}{}{%
     \rule[0.1cm]{\textwidth}{0.1mm}%
@@ -39,7 +41,7 @@
 }
 
 \ifthenelse{\isundefined{\MyTitle}}{}{%
-\fancyhf[HC]{{\slshape \MyTitle{}}}
+    \fancyhf[HC]{{\slshape \MyTitle{}}}
 }%
 
 \RenewDocumentCommand{\footrule}{}{%
@@ -49,8 +51,9 @@
 \renewcommand{\thefootnote}{\Roman{footnote}} 
     % Changing footnotes arabic to roman numbers
 
-% Redefine \maketitle
-\RenewDocumentCommand{\maketitle}{s}{%
+%%% Redefine \maketitle %%% 
+
+\NewDocumentCommand{\normalTemplateTitle}{s}{%
     \begin{@twocolumntrue}%
         \begin{minipage}{0.3\textwidth}%
             \begin{Center}
@@ -93,6 +96,77 @@
         \rule[0cm]{\textwidth}{0.1mm}%
     \end{Center}%
     \vspace{0.25cm}%
+}
+
+\NewDocumentCommand{\smallTemplateTitle}{s}{%
+    \begin{@twocolumntrue}
+        \begin{minipage}{0.1\textwidth}
+            \begin{Center}
+                \includegraphics[width=0.75\textwidth]{\TemplatePath src/unal_logo.pdf}%
+            \end{Center}
+        \end{minipage}
+        \hspace{0.05\textwidth}
+        \begin{minipage}{0.4\textwidth}
+            \begin{Center}
+                \ifthenelse{\isundefined{\MyClass}}{%
+                    {\large Set \textbackslash{}def\textbackslash{}MyClass\{your\_class\} in the preamble} \\[1ex]%
+                }{%
+                    {\large \itshape \MyClass{}} \\
+                }%
+                \ifthenelse{\isundefined{\MyTitle}}{%
+                    {\Large Set \textbackslash{}def\textbackslash{}MyTitle\{doc\_title\} in the preamble} \\[4ex]%
+                }{%
+                    {\Large \slshape \MyTitle{}} \\%
+                }%
+                \ifthenelse{\isundefined{\MyDate}}{%
+                    {\footnotesize Set \textbackslash{}def\textbackslash{}MyDate\{doc\_date\} in the preamble}%
+                }{%
+                    {\footnotesize \MyDate{}}%
+                }%
+            \end{Center}
+        \end{minipage}
+        \begin{minipage}{0.4\textwidth}
+            \begin{FlushRight}
+                \ifthenelse{\isundefined{\MyAuthor}}{%
+                    {Set \textbackslash{}def\textbackslash{}MyAuthor\{your\_name\} in the preamble} \\%
+                }{%
+                    {\MyAuthor{}} \\[-1ex]%
+                }%
+                \ifthenelse{\isundefined{\MyEmail}}{%
+                    {\footnotesize Set \textbackslash{}def\textbackslash{}MyEmail\{your\_email\} in the preamble} \\[4ex]%
+                }{%
+                    {\footnotesize \MyEmail{}}%
+                }%
+            \end{FlushRight}
+        \end{minipage}
+    \end{@twocolumntrue}
+    \begin{Center}%
+        \rule[0cm]{\textwidth}{0.1mm}%
+    \end{Center}%
+    \vspace{0.25cm}%
+}
+
+\RenewDocumentCommand{\maketitle}{O{}}{%
+    \SetDocMargins{}
+
+    \IfNoValueTF{#1}{%
+        \normalTemplateTitle{}%
+    }{\IfStrEq{#1}{small}{%
+        \smallTemplateTitle{}%
+    }{%
+        \normalTemplateTitle{}%
+    }}
+}
+
+%%% General Structure Stuff %%%
+
+% Set Document Margins
+\NewDocumentCommand{\SetDocMargins}{s}{%
+    \newgeometry{%
+        vmargin=2cm,%
+        hmargin=2.25cm,%
+        headheight=22pt%
+    }
 }
 
 % Enumerate Lists types

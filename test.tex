@@ -1,10 +1,10 @@
 \documentclass{article}
 
 \def\TemplatePath{./}
-\input{template.tex}
 
-\usepackage{polyglossia} % Language
-    \setdefaultlanguage{spanish}%
+%\input{template.tex}
+\usepackage{unal-template}
+    \usepackage{unal-template-algebra}
 
 \def\MyClass{TEST CLASS NAME lorem }
 \def\MyTitle{TEST TITLE NAME}
@@ -14,6 +14,7 @@
 
 \begin{document}
     \maketitle[small]
+    %\SetDocMargins{}
     Hello!
     \begin{enumerate}[label=\listAlphP]
         \item test \nsN{}
@@ -39,4 +40,10 @@
     \end{proposition}
     \newpage{}
     hello again!
+    \begin{definition}
+        Simple definition of something Adipisicing vel minus voluptatem voluptatum consequuntur Porro tempore natus dolorum magni fugiat. Suscipit excepturi placeat molestiae excepturi natus, obcaecati Susc
+    \end{definition}
+    \begin{theorem}
+        Dolor earum fugit quam perferendis eaque! Reiciendis autem velit quas atque doloremque. Voluptatibus natus veniam reprehenderit cum et? Iure recusandae ea necessitatibus tempora neque Et tempora aut ab officia tempore
+    \end{theorem}
 \end{document}
