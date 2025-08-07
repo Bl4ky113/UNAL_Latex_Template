@@ -56,6 +56,23 @@
     \fpair{#1}{#2}%
 }}
 
+%% Fast Succesions
+% Fast (injective) Succession
+\NewDocumentCommand{\fsucc}{mmm}{\ensuremath{%
+    \left\langle #1_{i} \right\rangle_{i = #2}^{#3}%
+}}
+\NewDocumentCommand{\fgsucc}{mmmm}{\ensuremath{%
+    \left\langle #1_{#2} \right\rangle_{#2 = #3}^{#4}%
+}}
+
+% Fast (any) Succession
+\NewDocumentCommand{\fsuccalt}{mmm}{\ensuremath{%
+    \left\{ #1_{i} \right\}_{i = #2}^{#3}%
+}}
+\NewDocumentCommand{\fgsucc}{mmmm}{\ensuremath{%
+    \left\{ #1_{#2} \right\}_{#2 = #3}^{#4}%
+}}
+
 %% Fast n-tuple
 % To use it split the values of the n-tuple with commas ','
 % \ftuple{A,B,C,D}
