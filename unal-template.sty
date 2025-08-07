@@ -1,5 +1,5 @@
 
-\ProvidesPackage{UNAL Modular Template}[2025/08/06 Modular template ready for ]
+\ProvidesExplPackage{UNAL Modular Template}{2025/08/06}{1.0.0}{Modular template for Math/CS articles for the Universidad Nacional de Colombia}
 \NeedsTeXFormat{LaTeX2e}
 
 %%% Main Template Packages %%%
@@ -255,9 +255,22 @@
     #1\left(#2\right)%
 }}
 
+% Fast Function Domain
+\NewDocumentCommand{\fdom}{m}{\ensuremath{%
+    \text{Dom}\left( #1 \right)%
+}}
+
+% Fast Function Image 
+\NewDocumentCommand{\fimg}{m}{\ensuremath{%
+    \text{Im}\left( #1 \right)%
+}}
+
+% Fast Kernel
+\NewDocumentCommand{\fker}{m}{\ensuremath{%
+    \text{ker}\left( #1 \right)%
+}}
+
 % Fast Set 
 \NewDocumentCommand{\fset}{m}{\ensuremath{%
-    \left\{%
-        #1 %
-    \right\}%
+    \left\{ #1 \right\}%
 }}

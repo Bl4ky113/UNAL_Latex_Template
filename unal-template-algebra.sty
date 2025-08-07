@@ -1,0 +1,187 @@
+
+\ProvidesExplPackage{UNAL Modular Template --- Algebra Module}{2025/08/06}{1.0.0}{Algebra Fast Binds, Commands and Such for UNAL Modular Template}
+\NeedsTeXFormat{LaTeX2e}
+
+\RequirePackage{xparse} % Command Args Split Package
+
+\usepackage{mathtools} % Math General
+\usepackage{amsthm} % Math Envs
+\usepackage{unicode-math} % Math Symbols
+\RequirePackage{amsmath} % Math Align
+
+%%% Algebra Fast Binds %%%
+
+% Fast Parentheses Matrix Determinant
+\NewDocumentCommand{\pdet}{m} {\ensuremath{%
+    \text{det}\left( #1 \right)%
+}}
+
+% Fast Parentheses Adjugate Matrix
+\NewDocumentCommand{\padj}{m} {\ensuremath{%
+    \text{Adj}\left( #1 \right)%
+}}
+
+% Fast Parentheses Generator of a Vector Space
+\NewDocumentCommand{\pgen}{m} {\ensuremath{%
+    \text{Gen}\left( #1 \right)%
+}}
+
+% Fast Bracket Generator of a Vector Space
+\NewDocumentCommand{\bgen}{m} {\ensuremath{%
+    \text{Gen}\left\{ #1 \right\}%
+}}
+
+% Fast Parentheses Dimension of a Vector Space
+\NewDocumentCommand{\pdim}{m} {\ensuremath{%
+    \text{dim}\left( #1 \right)%
+}}
+
+% Fast Coordinate Vector
+\NewDocumentCommand{\fveccoord}{mm} {\ensuremath{%
+    \left[ #1 \right]_{#2}%
+}}
+
+% Fast Vector Proyection
+\NewDocumentCommand{\fproy}{mm} {\ensuremath{%
+    \text{Proy}_{#1} #2%
+}}
+
+% Fast Vector Norm
+\NewDocumentCommand{\fnorm}{m} {\ensuremath{%
+    \left\Vert #1 \right\Vert%
+}}
+
+%% Fast Vector & Small Vector %%
+% To use it just split the values of the n-vector by commas ','
+% \fvec{1,2,3,4}
+
+% Vertical Vectors (Normal, Small, Generic, Small Generic)
+\NewDocumentCommand{\fvec}{> {\SplitList{,}}m}{\ensuremath{%
+    \begin{pmatrix}%
+        \ProcessList{#1}{\handlefvec}%
+    \end{pmatrix}%
+}}
+\NewDocumentCommand{\fsmvec}{> {\SplitList{,}}m}{\ensuremath{%
+    \left(%
+    \begin{smallmatrix}%
+        \ProcessList{#1}{\handlefvec}%
+    \end{smallmatrix}%
+    \right)%
+}}
+\NewDocumentCommand{\fgvec}{mm> {\SplitList{,}}m}{\ensuremath{%
+    \left #1%
+    \begin{array}{c}%
+        \ProcessList{#3}{\handlefvec}%
+    \end{array}%
+    \right #2%
+}}
+\NewDocumentCommand{\fsmgvec}{mm> {\SplitList{,}}m}{\ensuremath{%
+    \left #1%
+    \begin{smallmatrix}%
+        \ProcessList{#3}{\handlefvec}%
+    \end{smallmatrix}%
+    \right #2%
+}}
+
+% Horizontal Vectors (Normal, Small, Generic, Small Generic)
+\NewDocumentCommand{\fhvec}{> {\SplitList{,}}m}{\ensuremath{%
+    \begin{pmatrix}%
+        \ProcessList{#1}{\handlefhvec}%
+    \end{pmatrix}%
+}}
+\NewDocumentCommand{\fsmhvec}{> {\SplitList{,}}m}{\ensuremath{%
+    \left(%
+    \begin{smallmatrix}%
+        \ProcessList{#1}{\handlefhvec}%
+    \end{smallmatrix}%
+    \right)%
+}}
+\NewDocumentCommand{\fghvec}{mm> {\SplitList{,}}m}{\ensuremath{%
+    \left #1%
+    \begin{array}{c}%
+        \ProcessList{#3}{\handlefhvec}%
+    \end{array}%
+    \right #2%
+}}
+\NewDocumentCommand{\fsmghvec}{mm> {\SplitList{,}}m}{\ensuremath{%
+    \left #1%
+    \begin{smallmatrix}%
+        \ProcessList{#3}{\handlefhvec}%
+    \end{smallmatrix}%
+    \right #2%
+}}
+
+% Values Handling Commands
+\NewDocumentCommand{\handlefvec}{m}{\ensuremath{%
+    #1 \\%
+}}
+
+\NewDocumentCommand{\handlefhvec}{m}{\ensuremath{%
+    \ifthenelse{\isundefined{\FirstItem}}{%
+        #1%
+    }{% else
+        & #1%
+    }%
+    \def\FirstItem{0}
+}}
+
+%% Fast Matrix & Small Matrix %% 
+% To use it split the rows with semicolon ';' and the columns on the rows with commas ','
+% \fmat{
+%   1, 2, 3, 4;
+%   5, 6, 7, 8;
+%   9, 0, 0, 0
+% }
+
+% Normal and Small Matrixes
+\NewDocumentCommand{\fmat}{>{\SplitList{;}}m}{\ensuremath{%
+    \begin{pmatrix} %
+        \ProcessList{#1}{\handlefmatrixline}%
+    \end{pmatrix} %
+}}
+\NewDocumentCommand{\fsmmat}{>{\SplitList{;}}m}{\ensuremath{%
+    \left(%
+    \begin{smallmatrix}%
+        \ProcessList{#1}{\handlefmatrixline}%
+    \end{smallmatrix}%
+    \right)%
+}}
+
+% Coeficient Matrix
+\NewDocumentCommand{\fcoemat}{m>{\SplitList{;}}m}{\ensuremath{%
+    \left(%
+    \begin{array}{#1}%
+        \ProcessList{#2}{\handlefmatrixline}%
+    \end{array}%
+    \right)%
+}}
+
+% Semi-Generic Matrix and Small Generic Matrix
+
+% Pass as the first argument the type of matrix to use (pmatrix, bmatrix, vmatrix, ...)
+\NewDocumentCommand{\fgmat}{m>{\SplitList{;}}m}{\ensuremath{%
+    \begin{#1matrix} %
+        \ProcessList{#2}{\handlefmatrixline}%
+    \end{#1matrix} %
+}}
+
+\NewDocumentCommand{\fsmgmat}{mm>{\SplitList{;}}m}{\ensuremath{%
+    \left #1
+    \begin{smallmatrix}
+        \ProcessList{#3}{\handlefmatrixline}%
+    \end{smallmatrix}
+    \right #2
+}}
+
+% Values Handling Commands
+\NewDocumentCommand{\handlefmatrixline}{>{\SplitList{,}}m}{\ensuremath{%
+    \ProcessList{#1}{\handlefmatrixitem} \\
+}}
+\NewDocumentCommand{\handlefmatrixitem}{m}{\ensuremath{%
+    \ifthenelse{\isundefined{\FirstItem}}{%
+        #1%
+    }{%
+        & #1%
+    }%
+    \def\FirstItem{0}
+}}
