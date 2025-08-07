@@ -1,6 +1,9 @@
 
-\ProvidesExplPackage{UNAL Modular Template}{2025/08/06}{1.0.0}{Modular template for Math/CS articles for the Universidad Nacional de Colombia}
-\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{unal-template}[%
+    2025/08/06 --- 1.0.0; %
+    UNAL Modular Template; %
+    Modular template for Math/CS articles for the Universidad Nacional de Colombia %
+]
 
 %%% Main Template Packages %%%
 
@@ -146,7 +149,7 @@
 }
 
 \RenewDocumentCommand{\maketitle}{O{}}{%
-    \SetDocMargins{}
+    \InitTemplate{}
 
     \IfNoValueTF{#1}{%
         \normalTemplateTitle{}%
@@ -159,8 +162,9 @@
 
 %%% General Structure Stuff %%%
 
-% Set Document Margins
-\NewDocumentCommand{\SetDocMargins}{s}{%
+%% InitTemplate Command
+% Set Document the Margins
+\NewDocumentCommand{\InitTemplate}{s}{%
     \newgeometry{%
         vmargin=2cm,%
         hmargin=2.25cm,%
@@ -169,7 +173,6 @@
 }
 
 % Enumerate Lists types
-\newcommand{\listSubscript}[2]{\(#1_{#2}\)}
 \newcommand{\listAlph}{\alph*.}
 \newcommand{\listAlphP}{\alph*.)}
 \newcommand{\listALPH}{\Alph*.}

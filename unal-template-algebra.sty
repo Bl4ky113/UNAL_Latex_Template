@@ -1,11 +1,14 @@
 
-\ProvidesExplPackage{UNAL Modular Template --- Algebra Module}{2025/08/06}{1.0.0}{Algebra Fast Binds, Commands and Such for UNAL Modular Template}
-\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{unal-template-algebra}[%
+    2025/08/06 --- 1.0.0; %
+    UNAL Modular Template --- Algebra Module; %
+    Algebra Fast Binds, Commands and Such for UNAL Modular Template %
+]
 
 \RequirePackage{mathtools} % Math General
-\RequirePackage{amsthm} % Math Envs
 \RequirePackage{unicode-math} % Math Symbols
 \RequirePackage{amsmath} % Math Align
+\RequirePackage{amsthm} % Math Envs
 
 %%% Algebra Fast Binds %%%
 
@@ -40,7 +43,7 @@
 }}
 
 % Fast Vector Proyection
-\NewDocumentCommand{\fproy}{mm} {\ensuremath{%
+\DeclareDocumentCommand{\fvecproy}{mm} {\ensuremath{%
     \text{Proy}_{#1} #2%
 }}
 

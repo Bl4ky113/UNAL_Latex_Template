@@ -1,11 +1,14 @@
 
-\ProvidesExplPackage{UNAL Modular Template --- Set Theory Module}{2025/08/07}{1.0.0}{Set Theory Fast Binds, Commands and Such for UNAL Modular Template}
-\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{unal-template-set-theory}[%
+    2025/08/07 --- 1.0.0; %
+    UNAL Modular Template --- Set Theory Module;%
+    Set Theory Fast Binds, Commands and Such for UNAL Modular Template%
+]
 
 \RequirePackage{mathtools} % Math General
-\RequirePackage{amsthm} % Math Envs
 \RequirePackage{unicode-math} % Math Symbols
 \RequirePackage{amsmath} % Math Align
+\RequirePackage{amsthm} % Math Envs
 
 % Fast Power Set
 \NewDocumentCommand{\fpows}{m}{\ensuremath{%
@@ -22,7 +25,12 @@
     #1 \subseteq #2 \times #3%
 }}
 
-% Fast Funciton Def
+% Fast Equivalence Relation
+\NewDocumentCommand{\feqrel}{mm}{\ensuremath{%
+    \left[#1\right]_{#2}
+}}
+
+% Fast Function Def
 \NewDocumentCommand{\ffuncdef}{mmm}{\ensuremath{%
     #1: #2 \rightarrow #3%
 }}
