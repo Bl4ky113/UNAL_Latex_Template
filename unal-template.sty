@@ -37,7 +37,6 @@
 
 %%% Header / Footer Styles %%%
 
-\pagestyle{fancy}
 \RenewDocumentCommand{\headrule}{}{%
     \rule[0.1cm]{\textwidth}{0.1mm}%
     \vspace{-0.75cm}
@@ -101,6 +100,61 @@
     \vspace{0.25cm}%
 }
 
+\NewDocumentCommand{\fullpageTemplateTitle}{s}{%
+    \fancypagestyle{titlepage}{%       
+        \fancyhf{}
+        \RenewDocumentCommand{\headrule}{}{%
+            \rule[0.1cm]{\textwidth}{0.1mm}%
+        }
+        
+        \fancyfoot{}
+        \RenewDocumentCommand{\footrule}{}{%
+            \rule[0.1cm]{\textwidth}{0.1mm}%
+        }
+    }
+
+    \thispagestyle{titlepage}
+    \vspace{0.25\textheight}
+    \begin{Center}
+        \ifthenelse{\isundefined{\MyClass}}{%
+            {\Large Set \textbackslash{}def\textbackslash{}MyClass\{your\_class\} in the preamble} \\[0ex]%
+        }{%
+            {\Large \itshape \MyClass{}} \\[0.25cm]
+        }%
+        \ifthenelse{\isundefined{\MyTitle}}{%
+            {\Huge Set \textbackslash{}def\textbackslash{}MyTitle\{doc\_title\} in the preamble} \\[4ex]%
+        }{%
+            {\Huge \slshape \MyTitle{}} \\[0.25cm]%
+        }%
+    \end{Center}
+    \vspace{0.25\textheight}
+    \begin{Center}
+        \ifthenelse{\isundefined{\MyAuthor}}{%
+            {\huge Set \textbackslash{}def\textbackslash{}MyAuthor\{your\_name\} in the preamble} \\%
+        }{%
+            {\huge \MyAuthor{}} \\[0.25cm]%
+        }%
+        \ifthenelse{\isundefined{\MyEmail}}{%
+            {\large Set \textbackslash{}def\textbackslash{}MyEmail\{your\_email\} in the preamble} \\[4ex]%
+        }{%
+            {\large \MyEmail{}}%
+        }%
+    \end{Center}
+    \vspace{0.25\textheight}
+    \begin{Center}
+        \includegraphics[height=0.2\textheight]{\TemplatePath src/unal_logo.pdf} \\[1cm]
+        {\large Universidad Nacional de Colombia} \\[1ex]
+        {\large Bogotá, D.C.} \\[1ex]
+        \ifthenelse{\isundefined{\MyDate}}{%
+            \large Set \textbackslash{}def\textbackslash{}MyDate\{doc\_date\} in the preamble%
+        }{%
+            \large \MyDate{} \\[1ex]%
+        }%
+    \end{Center}
+    \newpage{}
+    \setcounter{page}{1}
+}
+
 \NewDocumentCommand{\smallTemplateTitle}{s}{%
     \begin{@twocolumntrue}
         \begin{minipage}{0.1\textwidth}
@@ -154,11 +208,14 @@
 
     \IfNoValueTF{#1}{%
         \normalTemplateTitle{}%
-    }{\IfStrEq{#1}{small}{%
-        \smallTemplateTitle{}%
-    }{%
-        \normalTemplateTitle{}%
-    }}
+    }{\IfStrEqCase{#1}{%
+        {small}{\smallTemplateTitle{}}%
+        {normal}{\normalTemplateTitle{}}%
+        {fullpage}{\fullpageTemplateTitle{}}%
+        }[% default
+            \normalTemplateTitle{}%
+        ]
+    }%
 }
 
 %%% General Structure Stuff %%%
@@ -171,6 +228,8 @@
         hmargin=2.25cm,%
         headheight=22pt%
     }
+
+    \pagestyle{fancy}
 }
 
 % Enumerate Lists types
