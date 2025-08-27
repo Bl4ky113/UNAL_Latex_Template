@@ -43,6 +43,11 @@
     \lim_{#1 \rightarrow #2^{#3}} #4%
 }}
 
+% Fast Derivatives
+\NewDocumentCommand{\fderiv}{mm}{\ensuremath{%
+    \frac{d}{d #1}\left( #2 \right)
+}}
+
 %% Fast Sums
 % i-Sum
 \NewDocumentCommand{\fisum}{mmm}{\ensuremath{%

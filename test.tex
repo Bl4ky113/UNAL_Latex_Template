@@ -7,14 +7,14 @@
     \usepackage{unal-template-set-theory}
     \usepackage{unal-template-calculus}
 
-\def\MyClass{TEST CLASS NAME lorem }
+\def\MyClass{TEST CLASS NAME lorem}
 \def\MyTitle{TEST TITLE NAME}
-\def\MyAuthor{TEST AUTHOR NAME lorem }
+\def\MyAuthor{TEST AUTHOR NAME lorem}
 \def\MyEmail{test@email.com}
 \def\MyDate{\today}
 
 \begin{document}
-    \maketitle[fullpage]
+    \maketitle[small]
     %\SetDocMargins{}
     Hello!
     \begin{enumerate}[label=\listALPHP]
@@ -28,12 +28,16 @@
         \item \ftuple{1,2,3,4,5,6} \fpair{1}{2} \ftuple{1,2}
         \item \fvecproy{v}{w} 
         \item \fveccoord{v}{w} \feqrel{A}{E}
+        \item \fbincoe{1}{n}
     \end{enumerate}
     \begin{definition}
         Simple definition of something Adipisicing vel minus voluptatem voluptatum consequuntur Porro tempore natus dolorum magni fugiat. Suscipit excepturi placeat molestiae excepturi natus, obcaecati Susc
     \end{definition}
     \begin{theorem}
         Dolor earum fugit quam perferendis eaque! Reiciendis autem velit quas atque doloremque. Voluptatibus natus veniam reprehenderit cum et? Iure recusandae ea necessitatibus tempora neque Et tempora aut ab officia tempore
+    \end{theorem}
+    \begin{theorem}
+        2do Dolor earum fugit quam perferendis eaque! Reiciendis autem velit quas atque doloremque. Voluptatibus natus veniam reprehenderit cum et? Iure recusandae ea necessitatibus tempora neque Et tempora aut ab officia tempore
     \end{theorem}
     \begin{lemma}
         Elit animi iste elit quibusdam doloremque fuga accusantium! Reprehenderit laborum amet labore quasi blanditiis. Qui est esse unde consequuntur expedita! Eum nemo nihil molestias dolor tenetur dolore. Labore tempora incidunt
@@ -44,18 +48,23 @@
     \begin{proposition}
         Ipsum quisquam minima adipisicing quod eos vel itaque! Nostrum nulla assumenda voluptatum dignissimos ex Laudantium dignissimos architecto nemo vel laboriosam quam Perferendis provident et temporibus aut tempore, minus nobis rem.
     \end{proposition}
+    \begin{proof}
+        Elit consequatur cum nulla fugiat laboriosam? Illum sequi nemo dolor provident dolor aliquid repellendus? Quibusdam totam sunt sit laboriosam eveniet Aspernatur voluptatum laudantium id ipsum a Sit voluptatem id rem
+    \end{proof}
     \fvec{1,2,3,4}
     \fsmvec{1,2,3,4}
     \fhvec{1,2,3,4}
     \[
-        \fcoemat{cc|cc}{1,2,3,4;5,6,7,8;9,0,0,0}
-        \fgmat{v}{1,2,3,4;5,6,7,8;9,0,0,0}
-        \fsmgmat{|}{|}{1,2,3,4;5,6,7,8;9,0,0,0}
+        \begin{aligned}
+            f : A &\rightarrow B \\
+            x &\mapsto x^2
+        \end{aligned}
     \]
     \[
-        \int x dx = \frac{x^2}{2} + \fintc
-        \hspace{1cm}
-        \fisum{0}{\infty}{\frac{1}{i}}
+        \fsmmat{1,2,3;4,5,6;7,8,9}
+        \fcoemat{cc|cc}{1,2,3,4;5,6,7,8;9,0,0,0}
+        \fgmat{v}{1,2,3,4;5,6,7,8;9,0,0,0}
+        \fsmgmat{[}{|}{1,2,3,4;5,6,7,8;9,0,0,0}
     \]
     \newpage{}
     \begin{enumerate}
@@ -65,6 +74,7 @@
         \item \(\flim{2}{\frac{1}{x-2}} \fglim{h}{0}{\frac{\ffunc{f}{A + h} - \ffunc{f}{A}}{h}}\)
         \item \[\flimlr{2}{+}{\frac{1}{x-2}} \fglimlr{h}{0}{-}{\frac{\ffunc{f}{A + h} - \ffunc{f}{A}}{h}}\]
         \item \(\lim{}\)
+        \item \fderiv{x}{y \fsec{x}}
     \end{enumerate}
     hello again!
     \begin{definition}
