@@ -1,0 +1,20 @@
+
+\ProvidesPackage{unal-template-calculus}[%
+    2025/08/26 --- 1.0.0; %
+    UNAL Modular Template --- Probability Module; %
+    Probability Fast Binds, Commands and Such for UNAL Modular Template %
+]
+\NeedsTeXFormat{LaTeX2e}
+
+\RequirePackage{mathtools} % Math General
+\RequirePackage{unicode-math} % Math Symbols
+\RequirePackage{amsmath} % Math Align
+\RequirePackage{amsthm} % Math Envs
+
+% Fast Fancy Probability Measure function Symbol
+\def\fp{\ensuremath{\mathbb{P}}}
+
+% Fast Probability function 
+\NewDocumentCommand{\fprob}{m}{\ensuremath{%
+    \ffunc{\fp}{#1}
+}}

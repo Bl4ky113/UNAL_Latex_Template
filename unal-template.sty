@@ -1,6 +1,6 @@
 
 \ProvidesPackage{unal-template}[%
-    2025/08/06 --- 1.0.0; %
+    2025/09/04 --- 1.0.1; %
     UNAL Modular Template; %
     Modular template for Math/CS articles for the Universidad Nacional de Colombia %
 ]
@@ -59,11 +59,14 @@
     \begin{@twocolumntrue}%
         \begin{minipage}{0.3\textwidth}%
             \begin{Center}
+                \vspace*{\fill}
                 \includegraphics[width=0.6\textwidth]{\TemplatePath src/unal_logo.pdf}%
+                \vspace*{\fill}
             \end{Center}
         \end{minipage}%
         \begin{minipage}{0.7\textwidth}{%
             \begin{Center}
+                \vspace*{\fill}
                 \ifthenelse{\isundefined{\MyClass}}{%
                     {\large Set \textbackslash{}def\textbackslash{}MyClass\{your\_class\} in the preamble} \\[0ex]%
                 }{%
@@ -90,6 +93,7 @@
                 }{%
                     \MyDate{}%
                 }%
+                \vspace*{\fill}
             \end{Center}
         }%
         \end{minipage}%
@@ -97,7 +101,7 @@
     \begin{Center}%
         \rule[0cm]{\textwidth}{0.1mm}%
     \end{Center}%
-    \vspace{0.25cm}%
+    %\vspace{0.25cm}%
 }
 
 \NewDocumentCommand{\fullpageTemplateTitle}{s}{%
@@ -157,14 +161,16 @@
 
 \NewDocumentCommand{\smallTemplateTitle}{s}{%
     \begin{@twocolumntrue}
-        \begin{minipage}{0.1\textwidth}
+        \begin{minipage}{0.15\textwidth}
             \begin{Center}
-                \includegraphics[width=0.75\textwidth]{\TemplatePath src/unal_logo.pdf}%
+                \vspace*{\fill}
+                \includegraphics[width=0.8\textwidth]{\TemplatePath src/unal_logo.pdf}%
+                \vspace*{\fill}
             \end{Center}
         \end{minipage}
-        \hspace{0.05\textwidth}
-        \begin{minipage}{0.4\textwidth}
+        \begin{minipage}{0.5\textwidth}
             \begin{Center}
+                \vspace*{\fill}
                 \ifthenelse{\isundefined{\MyClass}}{%
                     {\large Set \textbackslash{}def\textbackslash{}MyClass\{your\_class\} in the preamble} \\[1ex]%
                 }{%
@@ -173,16 +179,17 @@
                 \ifthenelse{\isundefined{\MyTitle}}{%
                     {\Large Set \textbackslash{}def\textbackslash{}MyTitle\{doc\_title\} in the preamble} \\[4ex]%
                 }{%
-                    {\Large \slshape \MyTitle{}} \\%
+                    {\Large \slshape \MyTitle{}} \\[3ex]%
                 }%
                 \ifthenelse{\isundefined{\MyDate}}{%
                     {\footnotesize Set \textbackslash{}def\textbackslash{}MyDate\{doc\_date\} in the preamble}%
                 }{%
                     {\footnotesize \MyDate{}}%
                 }%
+                \vspace*{\fill}
             \end{Center}
         \end{minipage}
-        \begin{minipage}{0.4\textwidth}
+        \begin{minipage}{0.3\textwidth}
             \begin{FlushRight}
                 \ifthenelse{\isundefined{\MyAuthor}}{%
                     {Set \textbackslash{}def\textbackslash{}MyAuthor\{your\_name\} in the preamble} \\%
@@ -200,7 +207,50 @@
     \begin{Center}%
         \rule[0cm]{\textwidth}{0.1mm}%
     \end{Center}%
-    \vspace{0.25cm}%
+    %\vspace{0.25cm}%
+}
+
+\NewDocumentCommand{\multipleTemplateTitle}{}{%
+    \begin{@twocolumntrue}%
+        \begin{minipage}{0.45\textwidth}%
+            \begin{Center}
+                \vspace*{\fill}
+                \ifthenelse{\isundefined{\MyClass}}{%
+                    {\large Set \textbackslash{}def\textbackslash{}MyClass\{your\_class\} in the preamble} \\[0ex]%
+                }{%
+                    {\large \itshape \MyClass{}} \\[1ex]
+                }%
+                \ifthenelse{\isundefined{\MyTitle}}{%
+                    {\huge Set \textbackslash{}def\textbackslash{}MyTitle\{doc\_title\} in the preamble} \\[4ex]%
+                }{%
+                    {\huge \slshape \MyTitle{}} \\[2ex]%
+                }%
+                \ifthenelse{\isundefined{\MyDate}}{%
+                    Set \textbackslash{}def\textbackslash{}MyDate\{doc\_date\} in the preamble%
+                }{%
+                    \MyDate{} \\[3ex]%
+                }%
+                \includegraphics[width=0.35\textwidth]{\TemplatePath src/unal_logo.pdf} \\[2ex]%
+                \vspace*{\fill}
+            \end{Center}
+        \end{minipage}%
+        \begin{minipage}{0.5\textwidth}{%
+            \begin{FlushRight}
+                \vspace*{\fill}
+                \ifthenelse{\isundefined{\MyAuthors}}{%
+                    {\Large Set \textbackslash{}def\textbackslash{}MyAuthors\{author\_name, author\_email, \(\cdots\)\} in the preamble} \\%
+                }{%
+                    \MyAuthors{}
+                }%
+                \vspace*{\fill}
+            \end{FlushRight}
+        }%
+        \end{minipage}%
+    \end{@twocolumntrue}%
+    \begin{Center}%
+        \rule[0cm]{\textwidth}{0.1mm}%
+    \end{Center}%
+    %\vspace{0.25cm}%
 }
 
 \RenewDocumentCommand{\maketitle}{O{}}{%
@@ -212,6 +262,7 @@
         {small}{\smallTemplateTitle{}}%
         {normal}{\normalTemplateTitle{}}%
         {fullpage}{\fullpageTemplateTitle{}}%
+        {multiple}{\multipleTemplateTitle{}}%
         }[% default
             \normalTemplateTitle{}%
         ]
@@ -237,21 +288,26 @@
 \newcommand{\listAlphP}{\alph*.)}
 \newcommand{\listALPH}{\Alph*.}
 \newcommand{\listALPHP}{\Alph*.)}
+\newcommand{\listRoman}{\roman*.)}
+\newcommand{\listROMAN}{\Roman*.)}
 
 % Proof, Text, Context Cases
-\newtheorem{TMPMathCases}[]{Caso}
-\NewDocumentCommand{\ResetCases}{} {\setcounter{TMPMathCases}{0}}
-\NewDocumentEnvironment{mathcase}{O{}m} {%
-    \IfValueTF{#1}{%
-        \begin{TMPMathCases}[#1] % 
-            #2%
+\theoremstyle{remark}
+\newtheorem{TMPMathCases}{Caso}
+\NewDocumentCommand{\ResetCases}{}{\setcounter{TMPMathCases}{0}}
+\NewDocumentEnvironment{mathcase}{o+b}
+{%
+    \IfValueTF{#1}
+    {%
+        \begin{TMPMathCases}[#1]%
+            #2 %
         \end{TMPMathCases}%
     }{%
-        \begin{TMPMathCases} % 
-            #2%
+        \begin{TMPMathCases}% 
+            #2 %
         \end{TMPMathCases}%
     }
-} {}
+}{}
 
 % Document Definitions
 \newtheorem{TMPMathDefinition}{Definición}
@@ -313,8 +369,12 @@
 \def\nsC{\ensuremath{\mathbb{C}}} % Complex
 
 % Fast Function
-\NewDocumentCommand{\ffunc}{mm}{\ensuremath{%
-    #1\left( #2 \right) %
+\NewDocumentCommand{\ffunc}{mom}{\ensuremath{%
+    #1%
+    \IfValueTF{#2}{%
+        \upharpoonright_{#2}
+    }{}%
+    \left( #3 \right) %
 }}
 
 % Fast inverse 
@@ -325,11 +385,26 @@
 % Fast Inverse (image) function
 \NewDocumentCommand{\ffuncinv}{mm}{\ensuremath{%
     #1^{-1}\left( #2 \right) %
+}
+}
+% Fast Inverse (image) function
+\NewDocumentCommand{\ffuncrest}{mm}{\ensuremath{%
+    #1\upharpoonright_{#2} %
 }}
 
 % Fast Function Domain
 \NewDocumentCommand{\fdom}{m}{\ensuremath{%
     \text{Dom}\left( #1 \right)%
+}}
+
+% Fast Function Range
+\NewDocumentCommand{\fran}{m}{\ensuremath{%
+    \text{Ran}\left( #1 \right)%
+}}
+
+% Fast Function Field
+\NewDocumentCommand{\ffield}{m}{\ensuremath{%
+    \text{Field}\left( #1 \right)%
 }}
 
 % Fast Function Image 

@@ -11,6 +11,16 @@
 \RequirePackage{amsmath} % Math Align
 \RequirePackage{amsthm} % Math Envs
 
+%% Fast Logic symbols %%
+% Fast Implies
+\NewDocumentCommand{\limp}{}{\ensuremath{\rightarrow}}
+% Fast Semantic Implies
+\NewDocumentCommand{\lsimp}{}{\ensuremath{\Rightarrow}}
+% Fast Equivalence
+\NewDocumentCommand{\leqv}{}{\ensuremath{\leftrightarrow}}
+% Fast Semantic Equivalence
+\NewDocumentCommand{\lseqv}{}{\ensuremath{\Leftrightarrow}}
+
 % Fast Power Set
 \NewDocumentCommand{\fpows}{m}{\ensuremath{%
     \symscr{P}\left( #1 \right)%
@@ -19,6 +29,13 @@
 % Fast Relation Image
 \NewDocumentCommand{\frelimg}{mm}{\ensuremath{%
     #1 \left[ #2 \right]%
+}}
+
+% Fast Identity Relation
+\def\fidentity{\ensuremath{\symbbit{i}}}
+
+\NewDocumentCommand{\frelid}{m}{\ensuremath{%
+    \fidentity_{#1}%
 }}
 
 % Fast Relation Def
@@ -49,6 +66,11 @@
 % Fast Ordered Pair of elements
 \NewDocumentCommand{\fpair}{mm}{\ensuremath{%
     \left( #1, #2 \right)%
+}}
+
+% Fast Ordered Pair of elements
+\NewDocumentCommand{\fpairdef}{mm}{\ensuremath{%
+    \fset{\fset{#1}, \fset{#1, #2}}%
 }}
 
 % Fast Order

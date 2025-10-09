@@ -1,6 +1,5 @@
-
 \ProvidesPackage{unal-template-calculus}[%
-    2025/08/07 --- 1.0.0; %
+    2025/09/21 --- 1.1.2; %
     UNAL Modular Template --- Calculus Module; %
     Calculus Fast Binds, Commands and Such for UNAL Modular Template %
 ]
@@ -11,12 +10,29 @@
 \RequirePackage{amsmath} % Math Align
 \RequirePackage{amsthm} % Math Envs
 
+\RequirePackage{kvsetkeys} % Command list parsing utils
+
 % Fast integrant constant
-\def\fintc{\ensuremath{\Huge{\symscr{C}}}}
+\def\fintc{\ensuremath{\symscr{C}}} % legacy stuff 
+\def\fconstc{\ensuremath{\symscr{C}}}
+\def\fconstk{\ensuremath{\symscr{K}}}
 
 % Fast Absolute Value
 \NewDocumentCommand{\fabs}{m}{\ensuremath{%
     \left\vert #1 \right\vert%
+}}
+
+% Fast Logarithms
+\NewDocumentCommand{\flog}{om}{\ensuremath{%
+    \IfValueTF{#1}{\log_{#1}}{\log}\left(#2\right)
+}}
+
+\NewDocumentCommand{\fln}{m}{\ensuremath{%
+    \ln\left(#1\right)
+}}
+
+\NewDocumentCommand{\flna}{m}{\ensuremath{%
+    \ln\fabs{#1}
 }}
 
 % Fast Binomial Coeficient
@@ -35,17 +51,60 @@
     \lim_{#1 \rightarrow #2} #3%
 }}
 
-% Fast limits L/R
-\NewDocumentCommand{\flimlr}{mmm}{\ensuremath{%
-    \lim_{x \rightarrow #1^{#2}} #3%
-}}
-\NewDocumentCommand{\fglimlr}{mmmm}{\ensuremath{%
-    \lim_{#1 \rightarrow #2^{#3}} #4%
-}}
+% Fast Lim
+%\NewDocumentCommand{\flim}{>{\SplitList{,}}m>{\SplitList{,}}m>{\SplitList{m}}om}{\ensuremath{%
+    %\count@=0
+    %\countr=1
+    %\comma@parse{#1}{%
+        %\advance\count@ by 1
+        %\@gobble
+    %}
+    %\lim_{\substack{%
+        %\ifnum\count@=\countr%
+            %#1 \rightarrow #2 %
+        %\else
+            %\left(%
+                %\left( #1 \right) \rightarrow \left( #2 \right)%
+            %\right)
+        %\fi \\%
+        %\IfValueTF{#3}{#3}{}
+    %}}%
+    %#4
+%}}
 
 % Fast Derivatives
-\NewDocumentCommand{\fderiv}{mm}{\ensuremath{%
-    \frac{d}{d #1}\left( #2 \right)
+\NewDocumentCommand{\fder}{omo}{\ensuremath{%
+    \frac
+    {%
+        \IfValueTF{#1}
+        {%
+            \IfValueTF{#3}%
+            {%
+                d^{#3} #1%
+            }%
+            {%
+                d #1%
+            }%
+        }{%
+            \IfValueTF{#3}%
+            {%
+                d^{3}  
+            }{%
+                d
+            }
+        }
+    }{%
+        \IfValueTF{#3}
+        {%
+            d #2^{#3}
+        }{%
+            d #2
+        }
+    }
+}}
+
+\NewDocumentCommand{\fderop}{omm}{\ensuremath{%
+    \frac{\IfValueTF{#1}{d #1}{d}}{d #2}\left( #3 \right)
 }}
 
 %% Fast Sums
