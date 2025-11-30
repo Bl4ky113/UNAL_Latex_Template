@@ -17,6 +17,8 @@
 \def\fconstc{\ensuremath{\symscr{C}}}
 \def\fconstk{\ensuremath{\symscr{K}}}
 
+\def\flaplace{\ensuremath{\mathcal{L}}} % Fast Laplace Transform symbol
+
 % Fast Absolute Value
 \NewDocumentCommand{\fabs}{m}{\ensuremath{%
     \left\vert #1 \right\vert%
@@ -129,6 +131,19 @@
     \sum_{m = #1}^{#2} #3%
 }}
 
+% Fast Laplace Transform of a Function
+\NewDocumentCommand{\flaplacef}{mgo}{\ensuremath{%
+    \IfValueTF{#2}{%
+        \flaplace{}^{-1}%
+    }{%
+        \flaplace{}%
+    }%
+    \left\{#1\right\}%
+    \IfValueTF{#3}{%
+        \left(s\right)%
+    }{}%
+}}
+
 %% Definition of some Trigfunctions
 \def\arccsc{\ensuremath{\text{arccsc}}}
 \def\arcsec{\ensuremath{\text{arcsec}}}
@@ -141,6 +156,10 @@
 \NewDocumentCommand{\fcsc}{m}{\ensuremath{\csc\left( #1 \right)}}
 \NewDocumentCommand{\fsec}{m}{\ensuremath{\sec\left( #1 \right)}}
 \NewDocumentCommand{\fcot}{m}{\ensuremath{\cot\left( #1 \right)}}
+
+\NewDocumentCommand{\fsinh}{m}{\ensuremath{\sinh\left( #1 \right)}}
+\NewDocumentCommand{\fcosh}{m}{\ensuremath{\cosh\left( #1 \right)}}
+\NewDocumentCommand{\ftanh}{m}{\ensuremath{\tanh\left( #1 \right)}}
 
 \NewDocumentCommand{\farcsin}{m}{\ensuremath{\arcsin\left( #1 \right)}}
 \NewDocumentCommand{\farccos}{m}{\ensuremath{\arccos\left( #1 \right)}}

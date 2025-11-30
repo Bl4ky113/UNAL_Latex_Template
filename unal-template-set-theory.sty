@@ -11,6 +11,9 @@
 \RequirePackage{amsmath} % Math Align
 \RequirePackage{amsthm} % Math Envs
 
+% Fast In Equal Order 
+\def\ineq{\ensuremath{\underline{\in}}}
+
 %% Fast Logic symbols %%
 % Fast Implies
 \NewDocumentCommand{\limp}{}{\ensuremath{\rightarrow}}
@@ -24,6 +27,19 @@
 % Fast Power Set
 \NewDocumentCommand{\fpows}{m}{\ensuremath{%
     \symscr{P}\left( #1 \right)%
+}}
+
+% Fast Sucesor Element 
+\NewDocumentCommand{\fsus}{m}{\ensuremath{%
+    {#1}^{+}%
+}}
+\NewDocumentCommand{\fsusp}{m}{\ensuremath{%
+    \left(#1\right)^{+}%
+}}
+
+% Fast Set Functions from _ to _
+\NewDocumentCommand{\fsetfuncs}{mm}{\ensuremath{%
+    {}^{#1}{#2}%
 }}
 
 % Fast Relation Image
@@ -86,6 +102,9 @@
 \NewDocumentCommand{\fgsucc}{mmmm}{\ensuremath{%
     \left\langle #1_{#2} \right\rangle_{#2 = #3}^{#4}%
 }}
+\NewDocumentCommand{\fssucc}{mmm}{\ensuremath{%
+    \left\langle #1_#2 \right\rangle_{#2 \in #3}%
+}}
 
 % Fast (any) Succession
 \NewDocumentCommand{\fsuccalt}{mmm}{\ensuremath{%
@@ -93,6 +112,20 @@
 }}
 \NewDocumentCommand{\fgsuccalt}{mmmm}{\ensuremath{%
     \left\{ #1_{#2} \right\}_{#2 = #3}^{#4}%
+}}
+\NewDocumentCommand{\fssuccalt}{mmm}{\ensuremath{%
+    \left\{ #1_#2 \right\}_{#2 \in #3}%
+}}
+
+% Fast Tuple Succesions
+\NewDocumentCommand{\fsucctup}{mmm}{\ensuremath{%
+    \left( #1_{i} \right)_{i = #2}^{#3}%
+}}
+\NewDocumentCommand{\fgsucctup}{mmmm}{\ensuremath{%
+    \left( #1_{#2} \right)_{#2 = #3}^{#4}%
+}}
+\NewDocumentCommand{\fssucctup}{mmm}{\ensuremath{%
+    \left( #1_#2 \right)_{#2 \in #3}%
 }}
 
 %% Fast n-tuple

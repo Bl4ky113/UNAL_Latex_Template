@@ -179,7 +179,7 @@
                 \ifthenelse{\isundefined{\MyTitle}}{%
                     {\Large Set \textbackslash{}def\textbackslash{}MyTitle\{doc\_title\} in the preamble} \\[4ex]%
                 }{%
-                    {\Large \slshape \MyTitle{}} \\[3ex]%
+                    {\Large \slshape \MyTitle{}} \\[0.5ex]%
                 }%
                 \ifthenelse{\isundefined{\MyDate}}{%
                     {\footnotesize Set \textbackslash{}def\textbackslash{}MyDate\{doc\_date\} in the preamble}%
@@ -357,8 +357,8 @@
 %%% General Fast Binds %%% 
 
 % Fast Sup and Sub -scripts
-\NewDocumentCommand{\fsup}{m}{\textsuperscript{#1}}
-\NewDocumentCommand{\fsub}{m}{\textsubscript{#1}}
+\NewDocumentCommand{\ftextsup}{m}{\textsuperscript{#1}}
+\NewDocumentCommand{\ftextsub}{m}{\textsubscript{#1}}
 
 % Fast Set of Numbers 
 \def\nsN{\ensuremath{\mathbb{N}}} % Natural
@@ -371,6 +371,13 @@
 % Fast Function
 \NewDocumentCommand{\ffunc}{mom}{\ensuremath{%
     #1%
+    \IfValueTF{#2}{%
+        \upharpoonright_{#2}
+    }{}%
+    \left( #3 \right) %
+}}
+\NewDocumentCommand{\ffuncp}{mom}{\ensuremath{%
+    \left(#1\right)%
     \IfValueTF{#2}{%
         \upharpoonright_{#2}
     }{}%
@@ -392,6 +399,26 @@
     #1\upharpoonright_{#2} %
 }}
 
+% Fast Max and Min
+\NewDocumentCommand{\fmin}{m}{\ensuremath{%
+    \text{mín}#1%
+}}
+\NewDocumentCommand{\fminp}{m}{\ensuremath{%
+    \text{mín}\left(#1\right)%
+}}
+\NewDocumentCommand{\fminset}{m}{\ensuremath{%
+    \text{mín}\left\{#1\right\}%
+}}
+\NewDocumentCommand{\fmax}{m}{\ensuremath{%
+    \text{máx}#1%
+}}
+\NewDocumentCommand{\fmaxp}{m}{\ensuremath{%
+    \text{máx}\left(#1\right)%
+}}
+\NewDocumentCommand{\fmaxset}{m}{\ensuremath{%
+    \text{máx}\left\{#1\right\}%
+}}
+
 % Fast Function Domain
 \NewDocumentCommand{\fdom}{m}{\ensuremath{%
     \text{Dom}\left( #1 \right)%
@@ -399,7 +426,7 @@
 
 % Fast Function Range
 \NewDocumentCommand{\fran}{m}{\ensuremath{%
-    \text{Ran}\left( #1 \right)%
+  \text{Ran}\left( #1 \right)%
 }}
 
 % Fast Function Field
@@ -415,6 +442,20 @@
 % Fast Kernel
 \NewDocumentCommand{\fker}{m}{\ensuremath{%
     \text{ker}\left( #1 \right)%
+}}
+
+% Fast Lower/Upper Bounds Stuff
+\NewDocumentCommand{\flowbnd}{m}{\ensuremath{%
+    \text{CotInf}\left( #1 \right)%
+}}
+\NewDocumentCommand{\fuppbnd}{m}{\ensuremath{%
+    \text{CotSup}\left( #1 \right)%
+}}
+\NewDocumentCommand{\fsup}{m}{\ensuremath{%
+    \text{sup}\left( #1 \right)%
+}}
+\NewDocumentCommand{\finf}{m}{\ensuremath{%
+    \text{inf}\left( #1 \right)%
 }}
 
 % Fast Set 
